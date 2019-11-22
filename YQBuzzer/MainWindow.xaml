@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YQBuzzer"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d"        
+        Title="激光刻录" Height="600" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <local:BrushConvert x:Key="converter"></local:BrushConvert>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="20 0 0 0" VerticalAlignment="Center">
+            <Button Name="btnConnect" Content="连接MQ" Width="80" Command="{Binding Path=ConnectCmd}"></Button>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="29,14,0,0" Grid.Row="1" TextWrapping="Wrap" Text="液晶码：" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="82,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=CurrUpperCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="17,50,0,0" Grid.Row="1" TextWrapping="Wrap" Text="检测结果：" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="82,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=CurrTestRlt}" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="29,89,0,0" Grid.Row="1" TextWrapping="Wrap" Text="制令号：" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="82,85,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=TaskData.WORKORDER_CODE}" VerticalAlignment="Top" Width="120"/>
+
+
+        <RichTextBox Name="rtxtMsg" HorizontalAlignment="Left" Height="428" VerticalAlignment="Top" Width="556" Margin="226,10,0,0" Grid.Row="1">
+        </RichTextBox>
+        <Button Content="测试" Name="btnTest" Click="BtnTest_Click" HorizontalAlignment="Left" Margin="29,178,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
